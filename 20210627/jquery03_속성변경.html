@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">h
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jquery03_속성변경.html</title>
+    <script>
+        $(function(){
+            // 클래스 추가
+            // document.querySelectorAll("div")[0].classList
+            $("div").addClass("c_red");
+
+            // 속성 추가 또는 변경
+            // 키 값 형태로 
+            // $("a").attr("href", "https://www.google.com");
+            
+
+            // 다음만 구글로 변경
+            $("a").eq(1).attr("href" , "https://www.google.com")
+
+            // 안쪽 글자변경
+            var daum = $("a").eq(1).html();
+            $("a").eq(1).html("구글");
+
+            // value 가져오기
+            var val = $("input[name=name]").val();
+            console.log(val);
+            $("input[name=name]").val("임꺽정");
+
+            // style 변경
+            $("p").css("color","red");
+            var color = $("p").css("color");
+            console.log(color);
+
+        })
+
+    </script>
+</head>
+<body>
+    <div>일번</div>
+    <div>이번</div>
+    <a href="https://www.naver.com">네이버</a>
+    <a href="https://www.daum.net">다음</a>
+    <hr>
+    <input type="text" name="name" value="홍길동">
+    <p>모양 변경</p>
+</body>
+</html>

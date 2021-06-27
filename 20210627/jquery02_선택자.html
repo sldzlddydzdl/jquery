@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jquery02_선택자.html</title>
+
+    <script>
+        $(function(){
+            // 태그로 가져오기
+            // var divTag = document.querySelectorAll("div");
+            // console.dir(divTag);
+            
+            var divTag = $("div") // 위와 매우 비슷하다. 엄밀히 말하면 변수 종류가 다르다!
+            console.dir(divTag);
+
+            var divId = $("ex01");
+            console.dir(divId);
+
+            var divClass = $(".ex02");
+            console.dir(divClass);
+        })
+    </script>
+</head>
+<body>
+    <div>00번</div>
+    <div id="ex01">01번</div>
+    <div class="ex02">02번</div>
+    <div class="ex02">03번</div>
+</body>
+</html>

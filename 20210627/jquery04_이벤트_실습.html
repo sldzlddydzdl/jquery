@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jquery04_이벤트_실습.html</title>
+    <style>
+        input{width: 100%; height: 50px;}
+        img{border: 1px solid black;}
+    </style>
+    <script>
+        $(function(){
+            $("input[name=oneTime]").one("click",function(){
+                alert("한번 만실행 한다!");
+            })
+
+            $("input[name=hi]").mouseenter(function(){
+                $("input[name=hi]").css("backgroundColor", "yellow");
+            })
+            $("input[name=hi]").mouseleave(function(){
+                $("input[name=hi]").css("backgroundColor", "gray");
+            })
+            $("#car").mouseenter(function(){
+                $("#car").attr("src" , "../images/car3.jpg");
+            })
+            $("#car").mouseleave(function(){
+                $("#car").attr("src" , "../images/car2.jpg");
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <input type="text" name="oneTime" value="한 번만 실행" ><br>
+    <input type="text" name="hi" value="안녕!!!"><br>
+
+    <img src="../images/car2.jpg" alt="자동차사진" id="car">
+    
+    
+</body>
+</html>

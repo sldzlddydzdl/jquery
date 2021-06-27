@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jquery05_이미지슬라이드.html </title>
+    <style>
+        *{margin: 0; padding: 0; text-decoration: none; list-style: none;}
+        /*이미지가 3개씩 보이는 박스*/
+        
+        .myFrame{
+            /*176*3 보다 가로크기가 커야한다.*/
+            width: calc(176px*3); height: 176px; border: 1px solid black;
+
+            /*박스를 벗어나는 이미지는 숨긴다*/
+            overflow:hidden;
+
+            /*버튼 (a태그) 부모로 되기 위하여*/
+            position: relative;
+
+            /*박스 가운데 정렬*/
+            margin: 0 auto;
+        }
+
+        /* ul이 자식인 li를 감싸도록 처리*/
+        .myFrame>ul::after{content: ""; clear: both; display: block }
+        /*이미지를 한쪽으로 정렬시킴*/
+        .myFrame>ul>li{float: left; }
+        /* .myFrame li */
+
+        /*버튼 위치 조절*/
+        .myFrame>a{
+            position: absolute; top: 40%; width: 50px; height: 50px; background:gray;
+            border-radius: 25%; text-align: center; line-height: 50px;
+        }
+
+        /*다음버튼*/
+        .myFrame>a:first-of-type{right: 0px; }
+        .myFrame>a:last-of-type{left: 0px; }
+    </style>
+    <script>
+        $(function(){
+
+            // "다음" 버튼 기능 구현
+            $(".myFrame>a").first().click(function(){
+                var first = $(".myFrame li").first();
+                $(".myFrame>ul").eq(0).append(first);
+            })
+
+            $(".myFrame>a").last().click(function(){
+                // 마지막을 선택해서
+                var last = $(".myFrame li").last();
+                console.log(last);
+                // ul 자식의 맨 앞으로 추가한다.
+                $(".myFrame>ul").eq(0).prepend(last);
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>이미지 슬라이더</h1>
+    <div class="myFrame">
+        <ul>
+            <li><img src="../images/simg01.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg02.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg03.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg04.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg05.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg06.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg07.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg08.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg09.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg10.jpg" alt="이미지슬라이딩~"></li>
+        </ul>
+        <a href="#">다음</a>
+        <a href="#">이전</a>
+    </div>    
+    
+</body>
+</html>
