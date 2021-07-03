@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jquery06_이미지슬라이드2.html</title>
+    <style>
+        *{margin: 0; padding: 0; text-decoration: none; list-style: none;}
+        /*이미지가 3개씩 보이는 박스*/
+        h1{text-align: center;}
+        
+        .myFrame{
+            /*176*3 보다 가로크기가 커야한다.*/
+            width: calc(176px*3); height: 176px; border: 1px solid black;
+
+            /*박스를 벗어나는 이미지는 숨긴다*/
+            overflow:hidden; 
+
+            /*버튼 (a태그) 부모로 되기 위하여*/
+            position: relative;
+
+            /*박스 가운데 정렬*/
+            margin: 0 auto;
+        }
+
+        .myFrame>ul{width: calc(176px*10);}
+        /* ul이 자식인 li를 감싸도록 처리*/
+        .myFrame>ul::after{content: ""; clear: both; display: block }
+        /*이미지를 한쪽으로 정렬시킴*/
+        .myFrame>ul>li{float: left; }
+
+        /* .myFrame li */
+
+        /*버튼 위치 조절*/
+        .myFrame>a{
+            position: absolute; top: 40%; width: 50px; height: 50px; background:gray;
+            border-radius: 25%; text-align: center; line-height: 50px;
+        }
+
+        /*다음버튼*/
+        .myFrame>a:first-of-type{right: 0px; }
+        .myFrame>a:last-of-type{left: 0px; }
+    </style>
+    <script>
+        $(function(){
+            // var i = 0;
+            $("a:contains('다음')").click(function(){
+                console.log($(this));
+
+                // ul 을 왼쪽으로 이미지 하나 크기만큼 이동시킨다
+
+                // margin-left 를 이용함.
+                var ul = $("div.myFrame").children().eq(0);
+                console.log(ul);        
+                
+                // i++;
+                // ul.css("margin-left")
+                // var marginLeft = -176*i;
+                // parseInt(ul.css("margin-left")) // -167px -> -167 
+                ul.animate( // animate() 는 내가 변경하고싶은 css 를 넣는다.
+                    { "margin-left":"-176px"} 
+                    , 500
+                    , function(){ // 애니메이션이 종료됬을때 실행할 함수
+                        // 첫번째 이미지를 가장 뒤로 보낸다
+                        ul.append(ul.children().first())
+                        // margin-left 를 0으로 다시 만들어준다
+                        ul.css("margin-left","0px")
+                }) 
+                // ul.css("margin-left", "calc(-176px*"+i+")");
+            })
+
+            $("a:contains('이전')").click(function(){
+                console.log($(this));
+
+                var ul = $("div.myFrame").children().eq(0);
+                console.log(ul);
+
+                ul.prepend(ul.children().last())
+                ul.css("margin-left","-176px")
+
+                ul.animate(
+                    // 이미지가 오른쪽으로 한칸씩 이동해야함
+                    // margin-left 를 +이미지 크기만큼 해줘야한다.
+                    // 문제!! 빈칸이 보인다.
+                    // 왼쪽에 이미지가 준비되어있어야한다.
+                    // 문제!! 첫번째에 보이지 않게 해야한다.
+                    // 왼쪽에 숨겨줘야한다.
+                    // margin-left 이미지 한칸만큼 -로 처리.
+                    {"margin-left":"0px"}
+                    , 500
+                )
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>이미지 슬라이더</h1>
+    <div class="myFrame">
+        <ul>
+            <li><img src="../images/simg01.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg02.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg03.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg04.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg05.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg06.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg07.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg08.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg09.jpg" alt="이미지슬라이딩~"></li>
+            <li><img src="../images/simg10.jpg" alt="이미지슬라이딩~"></li>
+        </ul>
+        <a href="#">다음</a>
+        <a href="#">이전</a>
+    </div>    
+</body>
+</html>
